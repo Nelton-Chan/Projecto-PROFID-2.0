@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Iniciar Sessão - Plataforma de Formação</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+  <style>
+    :root {
+      --primary-color: #5AC8FA;
+      --secondary-color: #007BFF;
+      --dark-color: #004080;
+      --light-color: #f5f5f5;
+      --danger-color: #dc3545;
+      --success-color: #28a745;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--light-color);
+      color: #333; 
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    header {
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      color: white;
+      text-align: center;
+      padding: 40px 20px;
+      margin-bottom: 30px;
+      border-radius: 0 0 10px 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    header h1 {
+      font-size: 2.2rem;
+      margin-bottom: 10px;
+    }
+
+    .form-container {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      padding: 30px;
+      margin-bottom: 40px;
+    }
+
+    .form-header {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 30px;
+      border-bottom: 1px solid #eee;
+    }
+
+    .form-tab {
+      padding: 12px 25px;
+      cursor: pointer;
+      font-weight: 600;
+      color: #666;
+      border-bottom: 3px solid transparent;
+      transition: all 0.3s;
+    }
+
+    .form-tab.active {
+      color: var(--secondary-color);
+      border-bottom: 3px solid var(--secondary-color);
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+      color: #555;
+    }
+
+    .required-field::after {
+      content: " *";
+      color: var(--danger-color);
+    }
+
+    input {
+      width: 100%;
+      padding: 12px 15px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-size: 16px;
+      transition: border 0.3s;
+    }
+
+    input:focus {
+      border-color: var(--primary-color);
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(90, 200, 250, 0.2);
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 24px;
+      background-color: var(--primary-color);
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-align: center;
+    }
+
+    .btn:hover {
+      background-color: var(--secondary-color);
+      transform: translateY(-2px);
+    }
+
+    .btn-block {
+      display: block;
+      width: 100%;
+    }
+
+    .error-message {
+      color: var(--danger-color);
+      font-size: 14px;
+      margin-top: 5px;
+      display: none;
+    }
+
+    .form-footer {
+      margin-top: 30px;
+      text-align: center;
+      font-size: 14px;
+      color: #666;
+    }
+
+    .form-footer a {
+      color: var(--secondary-color);
+      text-decoration: none;
+    }
+
+    .form-footer a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 1.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>Plataforma de Formação Inclusiva e Digital</h1>
+      <p>Conectando talentos a oportunidades reais!</p>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="form-container">
+      <div class="form-header">
+        <div class="form-tab active">Iniciar Sessão</div>
+  <div class="form-tab" onclick="window.location.href='index.html'">Registro</div>
+      </div>
+
+      <form id="formLogin" onsubmit="loginUsuario(event)">
+        <div class="form-group">
+          <label for="login_email" class="required-field">Email</label>
+          <input type="email" id="login_email" name="login_email" placeholder="seu@email.com" required>
+          <div class="error-message" id="email-error">Por favor, insira um email válido.</div>
+        </div>
+
+        <div class="form-group">
+          <label for="login_password" class="required-field">Senha</label>
+          <input type="password" id="login_password" name="login_password" placeholder="Digite sua senha" required>
+          <div class="error-message" id="password-error">A senha é obrigatória.</div>
+        </div>
+
+        <button type="submit" class="btn btn-block">Entrar</button>
+
+        <div class="form-footer">
+          Ainda não tem conta? <a href="index.html"> Registar-se</a>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    // Script opcional para login usando Supabase
+    const SUPABASE_URL = 'https://YOUR-PROJECT.supabase.co';
+    const SUPABASE_ANON_KEY = 'YOUR-ANON-KEY';
+    const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    async function loginUsuario(event) {
+      event.preventDefault();
+
+      const email = document.getElementById('login_email').value.trim();
+      const password = document.getElementById('login_password').value;
+
+      if (!email || !password) {
+        document.getElementById('email-error').style.display = !email ? 'block' : 'none';
+        document.getElementById('password-error').style.display = !password ? 'block' : 'none';
+        return;
+      }
+
+      const { error } = await supabase.auth.signInWithPassword({ email, password });
+
+      if (error) {
+        alert("Erro ao iniciar sessão: " + error.message);
+      } else {
+        alert("Login realizado com sucesso!");
+        // Redirecionar ou carregar dados conforme necessário
+        window.location.href = "menu.html";
+      }
+    }
+  </script>
+</body>
+</html>
