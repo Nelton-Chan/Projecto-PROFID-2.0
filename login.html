@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Iniciar Sessão - Plataforma de Formação</title>
+  <link rel="stylesheet" href="style1.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="script2.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+  
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>Plataforma de Registro e Oportunidades de Formação Inclusiva e Digital</h1>
+      <p>Conectando talentos a oportunidades reais!</p>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="form-container">
+      <div class="form-header">
+        <div class="form-tab active">Iniciar Sessão</div>
+      </div>
+
+      <form id="formLogin" onsubmit="loginUsuario(event)">
+        <div class="form-group">
+          <label for="login_email" class="required-field">Email</label>
+          <input type="email" id="login_email" name="login_email" placeholder="seu@email.com" required>
+          <div class="error-message" id="email-error">Por favor, insira um email válido.</div>
+        </div>
+
+        <div class="form-group">
+          <label for="login_password" class="required-field">Senha</label>
+          <input type="password" id="login_password" name="login_password" placeholder="Digite sua senha" required>
+          <div class="error-message" id="password-error">A senha é obrigatória.</div>
+        </div>
+
+        <button type="submit" class="btn btn-block">Entrar</button>
+
+        <div class="form-footer">
+          Ainda não tem conta? <a href="index.html"> Registar-se</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</body>
+</html>
