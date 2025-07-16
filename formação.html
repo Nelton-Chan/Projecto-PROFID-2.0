@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Concursos Escolares</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f1f5f9;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    /* MENU BUTTON */
+    .menu-button {
+      position: fixed;
+      top: 15px;
+      left: 15px;
+      z-index: 1100;
+      background-color: #5ac8fa;
+      color: white;
+      border: none;
+      font-size: 22px;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .menu-button:hover {
+      background-color: #0099cc;
+    }
+
+    /* SIDEBAR */
+    #sidebar {
+      width: 240px;
+      background-color: #5ac8fa;
+      height: 100vh;
+      position: fixed;
+      top: 0;
+      left: -240px;
+      display: flex;
+      flex-direction: column;
+      padding-top: 60px;
+      transition: left 0.3s ease;
+      z-index: 1000;
+    }
+
+    #sidebar.show {
+      left: 0;
+    }
+
+    #sidebar a {
+      color: white;
+      padding: 15px 20px;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: background 0.3s;
+    }
+
+    #sidebar a:hover {
+      background-color: #0099cc;
+    }
+
+    /* MAIN CONTENT */
+    .main {
+      transition: margin-left 0.3s ease;
+      width: 100%;
+      padding: 20px;
+    }
+
+    .main.with-sidebar {
+      margin-left: 240px;
+    }
+
+    header {
+      background: linear-gradient(135deg, #1e5799 0%, #207cca 100%);
+      color: #fff;
+      text-align: center;
+      padding: 60px 20px;
+      margin-bottom: 30px;
+      border-radius: 0 0 10px 10px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #1e5799;
+      margin: 30px 0;
+    }
+
+    .content {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 25px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .card {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      overflow: hidden;
+      width: 100%;
+      max-width: 350px;
+      transition: transform 0.3s ease;
+      padding: 25px;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+    }
+
+    .card h3 {
+      color: #1e5799;
+      margin-bottom: 15px;
+      font-size: 1.3rem;
+    }
+
+    .card p {
+      color: #555;
+      margin-bottom: 15px;
+    }
+
+    .contact-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin: 40px 0;
+      flex-wrap: wrap;
+    }
+
+    .contact-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background-color: #5ac8fb;
+      color: white;
+      padding: 12px 25px;
+      border-radius: 5px;
+      text-decoration: none;
+      transition: background 0.3s ease;
+      font-weight: bold;
+    }
+
+    .contact-button:hover {
+      background-color: #1e5799;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #1e5799;
+      color: #fff;
+      margin-top: 40px;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .main.with-sidebar {
+        margin-left: 0;
+      }
+      
+      .contact-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+<header>
+  <h1> Informações Escolares</h1>
+  <p>Despertando talentos e premiando excelência<br> Participe das competições que impulsionam seu futuro acadêmico!</p>
+</header>
+
+<!-- Botão de menu -->
+<button class="menu-button" onclick="toggleMenu()">
+  ☰
+</button>
+
+<!-- Sidebar -->
+<nav id="sidebar">
+  <a href="menu.html"><i class="fas fa-home"></i> Início</a>
+  <a href="vagas.html"><i class="fas fa-flask"></i> Concursos</a>
+  <a href="dados.html"><i class="fas fa-pencil"></i> Inscrições</a>
+<a href="formação.html"><i class="fas fa-info-circle"></i> Informações</a>
+  <a href="serviços.html"><i class="fas fa-cogs"></i> Serviços</a>
+  <a href="sobre_nos.html"><i class="fas fa-info"></i> Sobre</a>
+  <a href="index.html"><i class="fas fa-sign-out-alt"></i> Sair</a>
+</nav>
+
+<div class="main" id="main-content">
+  <h1>Informações </h1>
+  <div class="content">
+    <div class="card">
+      <h3>Feira de Ciências Anual</h3>
+      <p>Apresente seu projeto científico e concorra a bolsas de estudo, medalhas e credenciais para feiras nacionais. Aberto a todos os alunos do ensino secundário.</p>
+      <p><strong>Prazo:</strong> Brevemente</p>
+    </div>
+    <div class="card">
+      <h3>Concurso Literário</h3>
+      <p>Mostre seu talento na escrita com contos, poesias ou ensaios. Os melhores trabalhos serão publicados na antologia escolar.</p>
+      <p><strong>Prazo:</strong> Brevemente</p>
+    </div>
+    <div class="card">
+      <h3>Olimpíada de Matemática</h3>
+      <p>Teste suas habilidades matemáticas nesta competição que seleciona representantes para as olimpíadas regionais e nacionais.</p>
+      <p><strong>Inscrições:</strong></p>
+    </div>
+    <div class="card">
+      <h3>Desafio Tecnológico</h3>
+      <p>Crie soluções inovadoras usando programação, robótica ou design. Premiação inclui equipamentos eletrônicos e cursos especializados.</p>
+      <p><strong>Etapas:</strong> Brevemente</p>
+    </div>
+    <div class="card">
+      <h3>Competição de Debate</h3>
+      <p>Desenvolva suas habilidades de oratória e argumentação em temas atuais. Vencedores representarão a escola em torneios interscolares.</p>
+      <p><strong>Pré-inscrição:</strong> Brevemente</p>
+    </div>
+    <div class="card">
+      <h3>Mostra Artística</h3>
+      <p>Exponha suas criações nas áreas de pintura, escultura, fotografia ou performance. O público votará nos trabalhos mais inspiradores.</p>
+      <p><strong>Exposição:</strong> Brevemente</p>
+    </div>
+  </div>
+
+  <div class="contact-buttons">
+    <a href="https://wa.me/258879844237" class="contact-button">
+      <i class="fab fa-whatsapp"></i> Fale com a Organização
+    </a>
+    <a href="mailto:concursos@escola.edu" class="contact-button">
+      <i class="fas fa-envelope"></i> Enviar Projeto
+    </a>
+  </div>
+</div>
+
+<footer>
+  <p>&copy; 2025 Escola Secundária de Nametil. Todos os direitos reservados.</p>
+</footer>
+
+<script>
+  function toggleMenu() {
+    const sidebar = document.getElementById('sidebar');
+    const main = document.getElementById('main-content');
+    
+    sidebar.classList.toggle('show');
+    main.classList.toggle('with-sidebar');
+    
+    const navLinks = document.querySelectorAll('#sidebar a');
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        sidebar.classList.remove('show');
+        main.classList.remove('with-sidebar');
+      });
+    });
+  }
+  
+  document.addEventListener('click', function(event) {
+    const sidebar = document.getElementById('sidebar');
+    const menuButton = document.querySelector('.menu-button');
+    
+    if (!sidebar.contains(event.target) && event.target !== menuButton) {
+      sidebar.classList.remove('show');
+      document.getElementById('main-content').classList.remove('with-sidebar');
+    }
+  });
+</script>
+</body>
+</html>

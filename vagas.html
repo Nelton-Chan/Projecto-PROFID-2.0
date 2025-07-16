@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Concursos Escolares</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    /* Estilos globais */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f8fafc;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    /* Cabeçalho */
+    header {
+      background: linear-gradient(135deg, #1e5799 0%, #2989d8 100%);
+      color: #fff;
+      text-align: center;
+      padding: 80px 20px;
+      margin-bottom: 30px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('https://res.cloudinary.com/db59kuhyb/image/upload/v1750849715/file_00000000d27861f4bc9ecc60f58b6909_mww2vw.png') center/cover;
+      opacity: 0.4;
+      z-index: 0;
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 15px;
+      position: relative;
+      z-index: 1;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+    }
+
+    header p {
+      font-size: 1.2rem;
+      max-width: 800px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Botão do menu */
+    .menu-button {
+      position: fixed;
+      top: 15px;
+      left: 15px;
+      z-index: 1100;
+      background-color: #5ac8fa;
+      color: white;
+      border: none;
+      font-size: 22px;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .menu-button:hover {
+      background-color: #0099cc;
+      transform: scale(1.1);
+    }
+
+    /* Sidebar */
+    #sidebar {
+      width: 280px;
+      background-color: #5ac8fa;
+      height: 100vh;
+      position: fixed;
+      top: 0;
+      left: -280px;
+      display: flex;
+      flex-direction: column;
+      padding-top: 80px;
+      transition: left 0.3s ease;
+      z-index: 1000;
+      box-shadow: 2px 0 15px rgba(0,0,0,0.1);
+    }
+
+    #sidebar.show {
+      left: 0;
+    }
+
+    #sidebar a {
+      color: white;
+      padding: 15px 25px;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      transition: all 0.3s;
+      font-size: 1.1rem;
+      border-left: 4px solid transparent;
+    }
+
+    #sidebar a:hover {
+      background-color: rgba(255,255,255,0.2);
+      border-left: 4px solid white;
+      padding-left: 30px;
+    }
+
+    #sidebar a i {
+      width: 25px;
+      text-align: center;
+    }
+
+    /* Conteúdo principal */
+    .main {
+      transition: margin-left 0.3s ease;
+      width: 100%;
+      padding: 20px;
+      min-height: calc(100vh - 180px);
+    }
+
+    .main.with-sidebar {
+      margin-left: 280px;
+    }
+
+    h1.page-title {
+      text-align: center;
+      color: #1e5799;
+      margin: 30px 0 40px;
+      font-size: 2.2rem;
+      position: relative;
+    }
+
+    h1.page-title::after {
+      content: '';
+      display: block;
+      width: 100px;
+      height: 4px;
+      background: linear-gradient(90deg, #5ac8fa, #1e5799);
+      margin: 15px auto;
+      border-radius: 2px;
+    }
+
+    /* Cards de conteúdo */
+    .content {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 30px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+      overflow: hidden;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+    }
+
+    .card-img {
+      height: 200px;
+      overflow: hidden;
+    }
+
+    .card-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .card:hover .card-img img {
+      transform: scale(1.05);
+    }
+
+    .card-content {
+      padding: 25px;
+    }
+
+    .card h3 {
+      color: #1e5799;
+      margin-bottom: 15px;
+      font-size: 1.4rem;
+    }
+
+    .card p {
+      color: #555;
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+
+    .date {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #f0f8ff;
+      color: #1e5799;
+      padding: 8px 15px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    /* Botões de contato */
+    .contact-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      margin: 60px 0 40px;
+      flex-wrap: wrap;
+    }
+
+    .contact-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: linear-gradient(135deg, #5ac8fb, #1e88e5);
+      color: white;
+      padding: 16px 32px;
+      border-radius: 50px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      font-weight: 600;
+      font-size: 1.1rem;
+      box-shadow: 0 4px 12px rgba(90, 200, 250, 0.3);
+    }
+
+    .contact-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(90, 200, 250, 0.4);
+    }
+
+    /* Rodapé */
+    footer {
+      text-align: center;
+      padding: 30px 20px;
+      background: #1e5799;
+      color: #fff;
+      position: relative;
+    }
+
+    footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #5ac8fa, #1e5799);
+    }
+
+    footer p {
+      max-width: 800px;
+      margin: 0 auto;
+      font-size: 1rem;
+    }
+
+    /* Responsividade */
+    @media (max-width: 992px) {
+      .content {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      }
+    }
+
+    @media (max-width: 768px) {
+      .main.with-sidebar {
+        margin-left: 0;
+      }
+      
+      .content {
+        grid-template-columns: 1fr;
+        max-width: 500px;
+      }
+      
+      header {
+        padding: 60px 20px;
+      }
+      
+      header h1 {
+        font-size: 2rem;
+      }
+      
+      .contact-buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+      }
+      
+      .contact-button {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      header h1 {
+        font-size: 1.8rem;
+      }
+      
+      header p {
+        font-size: 1rem;
+      }
+      
+      h1.page-title {
+        font-size: 1.8rem;
+      }
+      
+      #sidebar {
+        width: 250px;
+        left: -250px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+<header>
+  <h1>Concursos Disponíveis</h1>
+  <p>Despertando talentos e premiando excelência<br> Participe das competições que impulsionam seu futuro acadêmico!</p>
+</header>
+
+<!-- Botão de menu -->
+<button class="menu-button" onclick="toggleMenu()">
+  <i class="fas fa-bars"></i>
+</button>
+
+<!-- Sidebar -->
+<nav id="sidebar">
+  <a href="menu.html"><i class="fas fa-home"></i> Início</a>
+  <a href="vagas.html"><i class="fas fa-flask"></i> Concursos</a>
+  <a href="dados.html"><i class="fas fa-pencil"></i> Inscrições</a>
+<a href="formação.html"><i class="fas fa-info-circle"></i> Informações</a>
+  <a href="serviços.html"><i class="fas fa-cogs"></i> Serviços</a>
+  <a href="sobre_nos.html"><i class="fas fa-info"></i> Sobre</a>
+  <a href="index.html"><i class="fas fa-sign-out-alt"></i> Sair</a>
+</nav>
+
+
+<div class="main" id="main-content">
+  <h1 class="page-title">Concursos</h1>
+  
+  <div class="content">
+    <div class="card">
+      <div class="card-img">
+        <img src="https://res.cloudinary.com/db59kuhyb/image/upload/v1750848913/istockphoto-2205985731-612x612_sbugyq.jpg" alt="Feira de Ciências">
+      </div>
+      <div class="card-content">
+        <h3>Feira de Ciências Anual</h3>
+        <p>Apresente seu projeto científico e concorra a bolsas de estudo, medalhas e credenciais para feiras nacionais. Aberto a todos os alunos do ensino secundário.</p>
+        <span class="date"><i class="far fa-calendar-alt"></i> Prazo: Brevemente</span>
+      </div>
+    </div>
+    
+    <div class="card">
+      <div class="card-img">
+        <img src="https://res.cloudinary.com/db59kuhyb/image/upload/v1750848999/books-2463779_1280_chvmr3.jpg" alt="Concurso Literário">
+      </div>
+      <div class="card-content">
+        <h3>Concurso Literário</h3>
+        <p>Mostre seu talento na escrita com contos, poesias ou ensaios. Os melhores trabalhos serão publicados na antologia escolar.</p>
+        <span class="date"><i class="far fa-calendar-alt"></i> Prazo: Brevemente</span>
+      </div>
+    </div>
+    
+    <div class="card">
+      <div class="card-img">
+        <img src="https://res.cloudinary.com/db59kuhyb/image/upload/v1750848967/geometry-1023846_1280_s01xtf.jpg" alt="Olimpíada de Matemática">
+      </div>
+      <div class="card-content">
+        <h3>Olimpíada de Matemática</h3>
+        <p>Teste suas habilidades matemáticas nesta competição que seleciona representantes para as olimpíadas regionais e nacionais.</p>
+        <span class="date"><i class="far fa-calendar-alt"></i> Inscrições: Brevemente</span>
+      </div>
+    </div>
+    
+    <div class="card">
+      <div class="card-img">
+        <img src="https://res.cloudinary.com/db59kuhyb/image/upload/v1750848612/photo-1519389950473-47ba0277781c_wqq7gg.jpg" alt="Desafio Tecnológico">
+      </div>
+      <div class="card-content">
+        <h3>Desafio Tecnológico</h3>
+        <p>Crie soluções inovadoras usando programação, robótica ou design. Premiação inclui equipamentos eletrônicos e cursos especializados.</p>
+        <span class="date"><i class="far fa-calendar-alt"></i> Etapas: Brevemente</span>
+      </div>
+    </div>
+    
+    <div class="card">
+      <div class="card-img">
+        <img src="https://res.cloudinary.com/db59kuhyb/image/upload/v1750849595/photo-1641903806973-17eaf2d2634f_qkfue2.jpg" alt="Competição de Debate">
+      </div>
+      <div class="card-content">
+        <h3>Competição de Debate</h3>
+        <p>Desenvolva suas habilidades de oratória e argumentação em temas atuais. Vencedores representarão a escola em torneios interscolares.</p>
+        <span class="date"><i class="far fa-calendar-alt"></i> Pré-inscrição: Brevemente</span>
+      </div>
+    </div>
+    
+    <div class="card">
+      <div class="card-img">
+        <img src="https://res.cloudinary.com/db59kuhyb/image/upload/v1750849026/photo-1719396923095-d9aa2ef3b974_s0og7o.jpg" alt="Mostra Artística">
+      </div>
+      <div class="card-content">
+        <h3>Mostra Artística</h3>
+        <p>Exponha suas criações nas áreas de pintura, escultura, fotografia ou performance. O público votará nos trabalhos mais inspiradores.</p>
+        <span class="date"><i class="far fa-calendar-alt"></i> Exposição: Brevemente</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="contact-buttons">
+    <a href="https://wa.me/258879844237" class="contact-button" target="_blank">
+      <i class="fab fa-whatsapp"></i> Fale com a Organização
+    </a>
+    <a href="mailto:zaardoo@gmail.com" class="contact-button">
+      <i class="fas fa-envelope"></i> Enviar Projeto
+    </a>
+  </div>
+</div>
+
+<footer>
+  <p>&copy; 2025 Escola Secundária de Nametil. Todos os direitos reservados.</p>
+</footer>
+
+<script>
+  // Função para alternar o menu
+  function toggleMenu() {
+    const sidebar = document.getElementById('sidebar');
+    const main = document.getElementById('main-content');
+    
+    sidebar.classList.toggle('show');
+    main.classList.toggle('with-sidebar');
+  }
+  
+  // Fechar menu ao clicar nos links
+  const navLinks = document.querySelectorAll('#sidebar a');
+  navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      document.getElementById('sidebar').classList.remove('show');
+      document.getElementById('main-content').classList.remove('with-sidebar');
+    });
+  });
+  
+  // Fechar menu ao clicar fora
+  document.addEventListener('click', function(event) {
+    const sidebar = document.getElementById('sidebar');
+    const menuButton = document.querySelector('.menu-button');
+    
+    if (!sidebar.contains(event.target) && event.target !== menuButton) {
+      sidebar.classList.remove('show');
+      document.getElementById('main-content').classList.remove('with-sidebar');
+    }
+  });
+
+  // Adicionar classe ativa ao item do menu correspondente à página atual
+  document.addEventListener('DOMContentLoaded', function() {
+    const currentPage = window.location.pathname.split('/').pop() || 'menu.html';
+    const navLinks = document.querySelectorAll('#sidebar a');
+    
+    navLinks.forEach(link => {
+      const linkPage = link.getAttribute('href');
+      if (linkPage === currentPage) {
+        link.classList.add('active');
+      }
+    });
+  });
+</script>
+</body>
+</html>

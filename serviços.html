@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Serviços</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+</head>
+
+<body>
+<header>
+  <h1></h1>
+  <p>Aproveite as oportunidades de desenvolvimento!</p>
+</header>
+
+<!-- Botão de menu -->
+<button class="menu-button" onclick="toggleMenu()">
+  ☰
+</button>
+
+<!-- Sidebar -->
+<nav id="sidebar">
+  <a href="menu.html"><i class="fas fa-home"></i> Início</a>
+  <a href="vagas.html"><i class="fas fa-flask"></i> Concursos</a>
+  <a href="dados.html"><i class="fas fa-pencil"></i> Inscrições</a>
+<a href="formação.html"><i class="fas fa-info-circle"></i> Informações</a>
+  <a href="serviços.html"><i class="fas fa-cogs"></i> Serviços</a>
+  <a href="sobre_nos.html"><i class="fas fa-info"></i> Sobre</a>
+  <a href="index.html"><i class="fas fa-sign-out-alt"></i> Sair</a>
+</nav>
+
+
+<div class="content">
+  <div class="card">
+  	<h1>Serviços</h1>
+    <h3>Cadastro de Candidatos</h3>
+    <p>Recebemos seus dados com segurança. Nossa equipa irá analisá-los para encontrar oportunidades ideais para o seu perfil.</p>
+  </div>
+  <div class="card">
+    <h3>Vagas em Destaque</h3>
+    <p>Atualizamos semanalmente as melhores vagas e concursos.</p>
+  </div>
+  
+  <div class="card">
+    <h3>Consultoria de Carreira</h3>
+    <p>Agende uma sessão gratuita com nossos especialistas para melhorar seu currículo e desenvolver sua trajetória profissional.</p>
+  </div>
+  
+  <div class="card">
+    <h3>Acompanhamento Personalizado</h3>
+    <p>Você não está sozinho! Oferecemos apoio por WhatsApp e e-mail durante todo o processo de busca por vagas.</p>
+  </div>
+</div>
+
+<div class="contact-buttons">
+  <a href="https://wa.me/258879844237" class="contact-button">
+    <i class="fab fa-whatsapp"></i> Contate-nos via WhatsApp
+  </a>
+  <a href="mailto:zaardoo@gmail.com" class="contact-button">
+    <i class="fas fa-envelope"></i> Enviar e-mail
+  </a>
+</div>
+
+<footer>
+  <p>&copy;2025 PROFID-Moçambique Todos os direitos reservados.</p>
+</footer>
+<!-- Script para abrir/fechar a sidebar -->
+<script>
+  function toggleMenu() {
+    const sidebar = document.getElementById('sidebar');
+    const main = document.getElementById('main-content');
+    
+    // Alterna a classe 'show' no sidebar
+    sidebar.classList.toggle('show');
+    
+    // Alterna a classe 'with-sidebar' no conteúdo principal
+    main.classList.toggle('with-sidebar');
+    
+    // Fechar menu ao clicar em qualquer link do menu
+    const navLinks = document.querySelectorAll('#sidebar a');
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        sidebar.classList.remove('show');
+        main.classList.remove('with-sidebar');
+      });
+    });
+  }
+  
+  // Fechar menu ao clicar fora dele
+  document.addEventListener('click', function(event) {
+    const sidebar = document.getElementById('sidebar');
+    const menuButton = document.querySelector('.menu-button');
+    
+    if (!sidebar.contains(event.target) && event.target !== menuButton) {
+      sidebar.classList.remove('show');
+      document.getElementById('main-content').classList.remove('with-sidebar');
+    }
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>sobre_nós</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  
+</head>
+<body>
+	
+<!-- Botão de menu -->
+<button class="menu-button" onclick="toggleMenu()">
+  ☰
+</button>
+
+<!-- Sidebar -->
+<nav id="sidebar">
+  <a href="menu.html"><i class="fas fa-home"></i> Início</a>
+  <a href="vagas.html"><i class="fas fa-flask"></i> Concursos</a>
+  <a href="dados.html"><i class="fas fa-pencil"></i> Inscrições</a>
+<a href="formação.html"><i class="fas fa-info-circle"></i> Informações</a>
+  <a href="serviços.html"><i class="fas fa-cogs"></i> Serviços</a>
+  <a href="sobre_nos.html"><i class="fas fa-info"></i> Sobre</a>
+  <a href="index.html"><i class="fas fa-sign-out-alt"></i> Sair</a>
+</nav>
+
+
+<!-- Conteúdo principal -->
+<div class="main" id="main-content">
+<header>
+  <h1>Sobre-nós </h1>
+  <p>Acompanhe e aproveite as oportunidades disponíveis</p>
+</header>
+
+  <h1>Sobre-nós</h1>
+<div class="content">
+  <div class="card">
+    <i class="fas fa-pencil"></i>
+    <h3>Descrição </h3>
+    <p>Inicialmente este site foi criado no dia 14/05/2025 por mim <strong>Nelton da Méria Nazaré Ambate</strong> estudante da Escola Secundária de Nametil este é um projeto criado para ajudar os jovens a encontrarem emprego com mais facilidade, por meio de um site simples e acessível.</p>
+</div>
+
+
+
+<footer>
+  Nelton da Méria Nazaré Ambate&copy; Todos direitos reservados 
+</footer>
+<!-- Script para abrir/fechar a sidebar -->
+<script>
+  function toggleMenu() {
+    const sidebar = document.getElementById('sidebar');
+    const main = document.getElementById('main-content');
+    
+    // Alterna a classe 'show' no sidebar
+    sidebar.classList.toggle('show');
+    
+    // Alterna a classe 'with-sidebar' no conteúdo principal
+    main.classList.toggle('with-sidebar');
+    
+    // Fechar menu ao clicar em qualquer link do menu
+    const navLinks = document.querySelectorAll('#sidebar a');
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        sidebar.classList.remove('show');
+        main.classList.remove('with-sidebar');
+      });
+    });
+  }
+  
+  // Fechar menu ao clicar fora dele
+  document.addEventListener('click', function(event) {
+    const sidebar = document.getElementById('sidebar');
+    const menuButton = document.querySelector('.menu-button');
+    
+    if (!sidebar.contains(event.target) && event.target !== menuButton) {
+      sidebar.classList.remove('show');
+      document.getElementById('main-content').classList.remove('with-sidebar');
+    }
+  });
+</script>
+</body>
+</html>
