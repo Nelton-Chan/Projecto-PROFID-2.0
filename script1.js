@@ -63,12 +63,12 @@
         if (insertError) throw insertError;
 
         alert('Registro concluído com sucesso!');
-        form.reset();
-        document.getElementById('password-strength-bar').className = 'strength-bar';
-        document.getElementById('nomeArquivo').textContent = 'Nenhum arquivo selecionado';
-      } catch (error) {
-        alert('Erro ao enviar formulário: ' + error.message);
-        console.error(error);
+// Limpa o formulário e os elementos visuais
+form.reset();
+document.getElementById('password-strength-bar').className = 'strength-bar';
+document.getElementById('nomeArquivo').textContent = 'Nenhum arquivo selecionado';
+// Redireciona para menu.html
+window.location.href = 'menu.html';
       }
     }
 // Certifique-se de que este script está linkado corretamente ao seu HTML
