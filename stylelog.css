@@ -116,11 +116,11 @@
       text-align: center;
     }
     #login_email{
-      background-image: url(imagens/no.png);
+      background-image: url(no.png);
       color: red;
     }
     #login_password{
-      background-image: url(imagens/bloqueio-de-senha.png);
+      background-image: url(bloqueio-de-senha.png);
       color: red;
     }
     
@@ -238,4 +238,5 @@
         font-size: 1.8rem;
       }
     }
+
  
