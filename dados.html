@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulário de Inscrição - Concursos Escolares</title>
+    <link rel="stylesheet" href="style3.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  
+</head>
+<body>
+	<!-- Botão de menu -->
+<button class="menu-button" onclick="toggleMenu()">
+  ☰
+</button>
+
+<!-- Sidebar -->
+<nav id="sidebar">
+  <a href="menu.html"><i class="fas fa-home"></i> Início</a>
+  <a href="vagas.html"><i class="fas fa-flask"></i> Concursos</a>
+  <a href="dados.html"><i class="fas fa-pencil"></i> Inscrições</a>
+  <a href="formação.html"><i class="fas fa-info-circle"></i> Informações</a>
+  <a href="serviços.html"><i class="fas fa-cogs"></i> Serviços</a>
+  <a href="sobre_nos.html"><i class="fas fa-info"></i> Sobre</a>
+  <a href="index.html"><i class="fas fa-sign-out-alt"></i> Sair</a>
+</nav>
+
+  <div class="container">
+    <form class="form-container">
+      <!-- Seção 1: Dados da Escola -->
+      <div class="form-section">
+      	<p>Preencha todos os campos para participar dos concursos escolares</p>
+        <h2><i class="fas fa-school"></i> Dados da Escola</h2>
+        
+        <div class="form-row">
+          <div class="form-group">
+            <label for="provincia" class="required-field">Província</label>
+            <select id="provincia" name="provincia" required>
+              <option value="">Selecione a província</option>
+              <option value="Maputo">Maputo</option>
+              <option value="Gaza">Gaza</option>
+              <option value="Inhambane">Inhambane</option>
+              <option value="Sofala">Sofala</option>
+              <option value="Manica">Manica</option>
+              <option value="Tete">Tete</option>
+              <option value="Zambézia">Zambézia</option>
+              <option value="Nampula">Nampula</option>
+              <option value="Cabo Delgado">Cabo Delgado</option>
+              <option value="Niassa">Niassa</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label for="distrito" class="required-field">Distrito</label>
+            <input type="text" id="distrito" name="distrito" required>
+          </div>
+        </div>
+        
+        <div class="form-row">
+          <div class="form-group">
+            <label for="posto_administrativo" class="required-field">Posto Administrativo</label>
+            <input type="text" id="posto_administrativo" name="posto_administrativo" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="escola" class="required-field">Escola</label>
+            <input type="text" id="escola" name="escola" required>
+          </div>
+        </div>
+        
+        <div class="form-row">
+          <div class="form-group">
+            <label for="classe" class="required-field">Classe</label>
+            <input type="text" id="classe" name="classe" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="ciclo" class="required-field">Ciclo</label>
+            <select id="ciclo" name="ciclo" required>
+              <option value="">Selecione o ciclo</option>
+              <option value="1º Ciclo">1º Ciclo</option>
+              <option value="2º Ciclo">2º Ciclo</option>
+              <option value="Professor">Professor</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Seção 2: Dados do Candidato -->
+      <div class="form-section">
+        <h2><i class="fas fa-user-graduate"></i> Dados do Candidato</h2>
+        
+        <div class="form-row">
+          <div class="form-group">
+            <label for="apelido" class="required-field">Apelido</label>
+            <input type="text" id="apelido" name="apelido" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="nome_candidato" class="required-field">Nome do Candidato</label>
+            <input type="text" id="nome_candidato" name="nome_candidato" required>
+          </div>
+        </div>
+        
+        <div class="form-row">
+          <div class="form-group">
+            <label for="idade" class="required-field">Idade</label>
+            <input type="number" id="idade" name="idade" min="10" max="25" required>
+          </div>
+          
+          <div class="form-group">
+            <label class="required-field">Género</label>
+            <div class="radio-group">
+              <div class="radio-option">
+                <input type="radio" id="masculino" name="genero" value="Masculino" required>
+                <label for="masculino">Masculino</label>
+              </div>
+              <div class="radio-option">
+                <input type="radio" id="feminino" name="genero" value="Feminino">
+                <label for="feminino">Feminino</label>
+              </div>
+              <div class="radio-option">
+                <input type="radio" id="outro" name="genero" value="Outro">
+                <label for="outro">Outro</label>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="form-row">
+          <div class="form-group">
+            <label for="contacto" class="required-field">Contacto</label>
+            <input type="tel" id="contacto" name="contacto" placeholder="+258 84 000 0000" required>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Seção 3: Área de Participação -->
+      <div class="form-section">
+        <h2><i class="fas fa-atom"></i> Área de Participação</h2>
+        
+        <div class="form-group">
+          <label class="required-field">Selecione a área científica</label>
+          <div class="checkbox-group">
+            <div class="checkbox-option">
+              <input type="checkbox" id="inovacao" name="area_cientifica" value="Inovação científica">
+              <label for="inovacao">Inovação científica</label>
+            </div>
+            <div class="checkbox-option">
+              <input type="checkbox" id="criacao_artistica" name="area_cientifica" value="Criação artística">
+              <label for="criacao_artistica">Criação artística</label>
+            </div>
+            <div class="checkbox-option">
+              <input type="checkbox" id="empreendedorismo" name="area_cientifica" value="Empreendedorismo">
+              <label for="empreendedorismo">Empreendedorismo</label>
+            </div>
+          </div>
+        </div>
+        
+        <div class="form-row">
+          <div class="form-group">
+            <label for="nome_projeto" class="required-field">Nome do Projeto</label>
+            <input type="text" id="nome_projeto" name="nome_projeto" required>
+          </div>
+        </div>
+        
+        <div class="form-row">
+          <div class="form-group">
+            <label for="impacto_projeto" class="required-field">Impacto do Projeto(Social, Econômico e ambiental)</label>
+            <textarea id="impacto_projeto" name="impacto_projeto" required></textarea>
+          </div>
+        </div>
+        
+        <div class="form-row">
+          <div class="form-group">
+            <label for="higiene_seguranca" class="required-field">Higiene e segurança no manuseamento do equipamento/trabalho</label>
+            <textarea id="higiene_seguranca" name="higiene_seguranca" required></textarea>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Botões de ação -->
+      <div class="form-actions">
+        <button type="reset" class="btn btn-secondary">Limpar Formulário</button>
+        <button type="submit" class="btn btn-primary">Enviar Inscrição</button>
+      </div>
+    </form>
+  </div>
+</body>
+<!-- Script para abrir/fechar a sidebar -->
+<script>
+  function toggleMenu() {
+    const sidebar = document.getElementById('sidebar');
+    const main = document.getElementById('main-content');
+    
+    // Alterna a classe 'show' no sidebar
+    sidebar.classList.toggle('show');
+    
+    // Alterna a classe 'with-sidebar' no conteúdo principal
+    main.classList.toggle('with-sidebar');
+    
+    // Fechar menu ao clicar em qualquer link do menu
+    const navLinks = document.querySelectorAll('#sidebar a');
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        sidebar.classList.remove('show');
+        main.classList.remove('with-sidebar');
+      });
+    });
+  }
+  
+  // Fechar menu ao clicar fora dele
+  document.addEventListener('click', function(event) {
+    const sidebar = document.getElementById('sidebar');
+    const menuButton = document.querySelector('.menu-button');
+    
+    if (!sidebar.contains(event.target) && event.target !== menuButton) {
+      sidebar.classList.remove('show');
+      document.getElementById('main-content').classList.remove('with-sidebar');
+    }
+  });
+  </script>
+</html>
