@@ -6,7 +6,12 @@
   <title>Formulário de Inscrição - Concursos Escolares</title>
     <link rel="stylesheet" href="style3.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  
+  <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+<script type="text/javascript">
+  (function(){
+    emailjs.init("tmZKOC3bpBJx9mBoO"); // Public Key
+  })();
+</script>
 </head>
 <body>
 	<!-- Botão de menu -->
@@ -26,7 +31,7 @@
 </nav>
 
   <div class="container">
-    <form class="form-container">
+  <form class="form-container" id="formulario-inscricao">
       <!-- Seção 1: Dados da Escola -->
       <div class="form-section">
       	<p>Preencha todos os campos para participar dos concursos escolares</p>
@@ -79,8 +84,7 @@
             <select id="ciclo" name="ciclo" required>
               <option value="">Selecione o ciclo</option>
               <option value="1º Ciclo">1º Ciclo</option>
-              <option value="2º Ciclo">2º Ciclo</option>
-              <option value="Professor">Professor</option>
+              <option value="2º Ciclo">2⁰ Ciclo</option>
             </select>
           </div>
         </div>
@@ -186,6 +190,31 @@
       </div>
     </form>
   </div>
+	<script>
+  const form = document.getElementById("formulario-inscricao");
+  const submitButton = form.querySelector(".btn-primary");
+
+  form.addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    // Desabilitar o botão e mudar o texto
+    submitButton.disabled = true;
+    submitButton.textContent = "Enviando...";
+
+    emailjs.sendForm("service_373tlia", "template_qjkp0n1", this)
+      .then(() => {
+        alert("✅ Inscrição enviada com sucesso!");
+        form.reset();
+      }, (error) => {
+        alert("❌ Erro ao enviar inscrição: " + JSON.stringify(error));
+      })
+      .finally(() => {
+        // Reativar o botão
+        submitButton.disabled = false;
+        submitButton.textContent = "Enviar Inscrição";
+      });
+  });
+	</script>
 </body>
 <!-- Script para abrir/fechar a sidebar -->
 <script>
@@ -220,4 +249,5 @@
     }
   });
   </script>
+
 </html>
