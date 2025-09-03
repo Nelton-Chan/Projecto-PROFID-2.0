@@ -161,6 +161,7 @@
       cursor: pointer;
       transition: background 0.3s ease;
       font-weight: bold;
+      text-align: center;
     }
 
     .contact-button:hover {
@@ -187,4 +188,5 @@
       .main.with-sidebar {
         margin-left: 0;
       }
+
     }
